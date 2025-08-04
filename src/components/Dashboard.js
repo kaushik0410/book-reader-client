@@ -10,7 +10,8 @@ function Dashboard() {
   useEffect(() => {
     const fetchBooks = async () => {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/books', {
+      // const res = await fetch('http://localhost:5000/api/books', {
+      const res = await fetch('https://book-reader-server-a6uv.onrender.com/api/books', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -21,7 +22,8 @@ function Dashboard() {
 
   const playAudio = async (bookId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/books/${bookId}/audio`, {
+      // const res = await fetch(`http://localhost:5000/api/books/${bookId}/audio`, {
+      const res = await fetch(`https://book-reader-server-a6uv.onrender.com/api/books/${bookId}/audio`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
 
@@ -74,7 +76,8 @@ function Dashboard() {
     const confirmDelete = window.confirm('Are you sure you want to delete this book?');
     if (!confirmDelete) return;
 
-    const res = await fetch(`http://localhost:5000/api/books/${bookId}`, {
+    // const res = await fetch(`http://localhost:5000/api/books/${bookId}`, {
+    const res = await fetch(`https://book-reader-server-a6uv.onrender.com/api/books/${bookId}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     });
@@ -117,7 +120,8 @@ function Dashboard() {
                 <p>Uploaded at {new Date(book.uploadDate).toLocaleDateString()}{" "}{new Date(book.uploadDate).toLocaleTimeString()}</p>
                 <div className="book-buttons">
                   {isSpeaking ? (<button onClick={stopAudio}>Stop Audio</button>) : (<button onClick={() => playAudio(book._id)}>Play Audio</button>)}
-                  <button onClick={() => window.open(`http://localhost:5000/uploads/${book.fileName}`, '_blank')}>View Document</button>
+                  {/* <button onClick={() => window.open(`http://localhost:5000/uploads/${book.fileName}`, '_blank')}>View Document</button> */}
+                  <button onClick={() => window.open(`https://book-reader-server-a6uv.onrender.com/uploads/${book.fileName}`, '_blank')}>View Document</button>
                   <button onClick={() => handleDelete(book._id)}>Delete</button>
                 </div>
               </div>

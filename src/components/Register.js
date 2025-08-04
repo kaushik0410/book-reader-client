@@ -8,7 +8,8 @@ function Register() {
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    const res = await fetch('http://localhost:5000/api/register', {
+    // const res = await fetch('http://localhost:5000/api/register', {
+    const res = await fetch('https://book-reader-server-a6uv.onrender.com/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
